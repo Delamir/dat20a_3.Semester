@@ -4,6 +4,7 @@ public class Main {
 
         Systemos.out.println("Hej");
         Systemos.out.println(5);
+        Systemos.out.println(5.00);
 
         System.out.println();
     }
