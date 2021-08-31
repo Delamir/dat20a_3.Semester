@@ -1,6 +1,10 @@
 public class Systemos {
 
     public static class out {
+
+        // Primitive datattyper
+        //int, long, short, float, double, byte, boolean, char
+
         public static void println(String s) {
             System.out.println(s);
         }
@@ -31,6 +35,14 @@ public class Systemos {
 
         public static void println(byte b) {
             System.out.println(b);
+        }
+
+        public static void println(short s) {
+            System.out.println(s);
+        }
+
+        public static void println(Word w) {
+            System.out.println(w);
         }
     }
 }
