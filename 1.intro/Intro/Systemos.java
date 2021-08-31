@@ -1,3 +1,7 @@
+package Intro;
+
+import java.util.ArrayList;
+
 public class Systemos {
 
     public static class out {
@@ -41,16 +45,22 @@ public class Systemos {
             System.out.println(s);
         }
 
-        public static void println(Object o) {
-            System.out.println(o);
+        public static void println(ArrayList<Object> content) {
+            for(int i = 0; i < content.size(); i++) {
+                System.out.print(content.get(i) + " ");
+            }
         }
 
-        public static void println(Word[] content) {
+        public static void println(Object[] content) {
 
-            for(Word w : content)
+            for(Object o : content)
             {
-                System.out.print(w + " ");
+                System.out.print(o + " ");
             }
+        }
+
+        public static void println(Object o) {
+            System.out.println(o);
         }
     }
 }

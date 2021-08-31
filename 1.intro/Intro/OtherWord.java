@@ -1,8 +1,10 @@
-public class Word {
+package Intro;
+
+public class OtherWord {
 
     String content;
 
-    public Word(String content) {
+    public OtherWord(String content) {
         this.content = content;
     }
 
