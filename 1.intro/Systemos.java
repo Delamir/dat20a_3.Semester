@@ -41,8 +41,16 @@ public class Systemos {
             System.out.println(s);
         }
 
-        public static void println(Word w) {
-            System.out.println(w);
+        public static void println(Object o) {
+            System.out.println(o);
+        }
+
+        public static void println(Word[] content) {
+
+            for(Word w : content)
+            {
+                System.out.print(w + " ");
+            }
         }
     }
 }
