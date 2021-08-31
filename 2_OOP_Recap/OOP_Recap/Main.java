@@ -6,5 +6,6 @@ public class Main {
         Octopus otto = new Octopus();
         System.out.println(otto.isAlive());
         System.out.println(otto.move());
+        System.out.println(otto.activity(6));
     }
 }
