@@ -1,4 +1,4 @@
-package OOP_Recap;
+package oop_recap;
 
 abstract class Kingdom {
 

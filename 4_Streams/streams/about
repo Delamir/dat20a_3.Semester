@@ -1,4 +1,4 @@
-Streams are:
+streams are:
     Not a data structure
     Designed for lambdas
     Do not support indexed access

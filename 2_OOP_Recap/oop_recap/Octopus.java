@@ -1,4 +1,4 @@
-package OOP_Recap;
+package oop_recap;
 
 import java.util.Random;
 
