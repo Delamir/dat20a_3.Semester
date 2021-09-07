@@ -1,0 +1,11 @@
+// String literal
+"Hello World"
+
+// Det er en anonym function også kaldet en literal
+() -> System.out.println("Hello World")
+
+// Lambda
+
+(Some argument)     [I Name them]
+=>                  [denotes lambda syntax]
+[...]               [function/lambda body]

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    const myFavouriteThings = ["Java", "eggplant", 123];
+
+    function printer(something) {
+        console.log(something)
+    }
+
+    // HoF = Higher Order Function, A function that takes a function as parameter
+    // forEach is a function and it takes printer as an argument (printer is also a function)
+    myFavouriteThings.forEach(printer);
+
+    // lambda
+    myFavouriteThings.forEach(element => printer(element));
+
+    myFavouriteThings.forEach((element, index, list) => printer(element));
+
+    // Below is the same as myFavouriteThings.forEach((element, index, list) => printer(element));
+    myFavouriteThings.forEach(console.log);
+
+    // Empty lambda
+    myFavouriteThings.forEach(element => {});
+
+</script>
+
+</body>
+</html>

@@ -23,6 +23,4 @@ public class Main {
         Comparator<String> stringComparatorLambda = (String firstString, String secondString) -> firstString.compareTo(secondString); //Implementering i lambda form
         System.out.println(stringComparatorLambda.compare("a", "b"));
     }
-
-
 }
