@@ -1,0 +1,6 @@
+<object>
+    <key>value</key>
+    <manufacturer>Airbus</manufacturer>
+    <isBetterThanBoeing>true</isBetterThanBoeing>
+    <productionLineSelection>60</productionLineSelection>
+</object>
