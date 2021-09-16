@@ -1,0 +1,12 @@
+{
+ "Sverri" : "Sverri",
+ "Lugt" : "Joachim",
+ "Tal" : [1, 2, 3, 4, 5],
+ "Gruppe1" : [
+	{"CEO" : "Sverri"},
+	{"Noob" : "Joachim"},
+	{"Barnet" : "Patrick"},
+	{"Champen" : "Christian}
+ ],
+ "dag" : 14
+}
