@@ -1,56 +1,61 @@
 package edu.kea.paintings.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.kea.paintings.models.Painting;
+import edu.kea.paintings.repositories.PaintingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
 
 @RestController
 public class Paintings {
 
-    private ArrayList<Painting> paintings = new ArrayList<>();
+    @Autowired
+    PaintingRepository paintings;
 
     @GetMapping("/paintings")
-    public ArrayList<Painting> getPaintings() {
-        return paintings;
+    public Iterable<Painting> getPaintings() {
+        return paintings.findAll();
     }
 
     @GetMapping("/paintings/{id}")
-    public Painting getPainting(@PathVariable int id) {
-        return paintings.get(id);
+    public Painting getPainting(@PathVariable Long id) {
+        return paintings.findById(id).get();
     }
 
     @PostMapping("/paintings")
     public Painting createPainting(@RequestBody Painting painting) {
-        paintings.add(painting);
-        return painting;
-    }
-
-    @PatchMapping("/paintings/{id}")
-    public Painting patchPainting(@PathVariable int id, @RequestBody String body) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            Painting newPainting = mapper.readValue(body, Painting.class);
-            paintings.set(id, newPainting);
-            return newPainting;
-        } catch (JsonProcessingException error) {
-            System.out.println(error);
-            Painting unknownPainting = new Painting("Unknown");
-            paintings.set(id, unknownPainting);
-            return unknownPainting;
-        }
+        // don't allow the client to overwrite the id
+        painting.setId(null);
+        return paintings.save(painting);
     }
 
     @PutMapping("/paintings/{id}")
-    public Painting updatePainting(@PathVariable int id, @RequestBody Painting painting) {
-        paintings.set(id, painting);
-        return paintings.get(id);
+    public String updatePainting(@PathVariable Long id, @RequestBody Painting painting) {
+        if (paintings.existsById(id)) {
+            painting.setId(id);
+            paintings.save(painting);
+            return "Painting was created";
+        } else {
+            return "Painting not found";
+        }
+    }
+
+    @PatchMapping("/paintings/{id}")
+    public String patchPainting(@PathVariable Long id, @RequestBody Painting painting) {
+        return paintings.findById(id).map(foundPainting -> {
+            if (painting.getArtist() != null) foundPainting.setArtist(painting.getArtist());
+            if (painting.getPrices() != 0) foundPainting.setPrices(painting.getPrices());
+            if (painting.getTitle() != null) foundPainting.setTitle(painting.getTitle());
+            if (painting.getGenre() != null) foundPainting.setGenre(painting.getGenre());
+            if (painting.getYear() != 0) foundPainting.setYear(painting.getYear());
+
+            paintings.save(foundPainting);
+            return "Painting updated";
+        }).orElse("Painting not found");
     }
 
     @DeleteMapping("/paintings/{id}")
-    public Painting deletePainting(@PathVariable int id) {
-        return paintings.remove(id);
+    public void deletePainting(@PathVariable Long id) {
+        paintings.deleteById(id);
     }
 
 }

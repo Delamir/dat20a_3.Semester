@@ -10,3 +10,9 @@
  ],
  "dag" : 14
 }
+
+private String artist;
+    private double prices;
+    private String title;
+    private String genre;
+    private int year;

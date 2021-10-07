@@ -5,9 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@Table(name = "paintings")
+@Table(name = "galleries")
 @Entity
-public class Painting {
+public class Gallery {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -15,17 +15,15 @@ public class Painting {
     private Long id;
 
     @Column
-    private String artist;
+    private String owner;
 
     @Column
-    private double prices;
+    private String name;
 
     @Column
-    private String title;
+    private String location;
 
     @Column
-    private String genre;
+    private int squareFeet;
 
-    @Column
-    private int year;
 }

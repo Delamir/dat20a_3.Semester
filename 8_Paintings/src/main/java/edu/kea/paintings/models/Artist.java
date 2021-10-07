@@ -1,17 +1,21 @@
 package edu.kea.paintings.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Data
 @Table(name="artists")
 @Entity
 public class Artist {
 
+
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column
-    private int id;
+    private Long id;
 
     @Column
     private String name;
@@ -25,6 +29,10 @@ public class Artist {
     @Column(length = 100)
     private String nationality;
 
+    @Column
+    private Date birthDate;
+
+    @Enumerated(value = EnumType.STRING)
     @Column
     private Gender gender;
 
