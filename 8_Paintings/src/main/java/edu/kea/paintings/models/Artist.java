@@ -2,6 +2,7 @@ package edu.kea.paintings.models;
 
 
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,5 +36,14 @@ public class Artist {
     @Enumerated(value = EnumType.STRING)
     @Column
     private Gender gender;
+
+    @ManyToOne
+    @JoinColumn(name = "gallery_id")
+    @Nullable
+    private Gallery gallery;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "artists", fetch = FetchType.LAZY)
+    private List<Painting> paintings;
 
 }

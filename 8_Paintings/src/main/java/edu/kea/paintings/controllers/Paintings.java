@@ -11,6 +11,9 @@ public class Paintings {
     @Autowired
     PaintingRepository paintings;
 
+    @Autowired
+    ArtistRepository artists;
+
     @GetMapping("/paintings")
     public Iterable<Painting> getPaintings() {
         return paintings.findAll();
@@ -21,11 +24,30 @@ public class Paintings {
         return paintings.findById(id).get();
     }
 
+    @GetMapping("/paintings/timeline")
+    public List<Painting> getPaintingByArtistAndYear(@RequestParam String artist, @RequestParam int year) {
+        return paintings.findPaintingsByArtistAndYear(artist, year);
+    }
+
+    @GetMapping("/paintings/priceabove/{price}")
+    public List<Painting> getPaintingsAboveACertainPrice(@PathVariable double price) {
+        return paintings.findPaintingsAboveACertainPrice(price);
+    }
+
     @PostMapping("/paintings")
-    public Painting createPainting(@RequestBody Painting painting) {
-        // don't allow the client to overwrite the id
-        painting.setId(null);
-        return paintings.save(painting);
+    public Painting addPainting(@RequestBody String body) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        Painting paintingToCreate = mapper.readValue(body, Painting.class);
+
+        Iterable<Long> artistsIds = mapper.readValue(body, ArtistDTO.class).artistsIds;
+
+        List<Artist> foundArtists = artists.findAllById(artistsIds);
+
+        paintingToCreate.setArtists(foundArtists);
+
+        return paintings.save(paintingToCreate);
     }
 
     @PutMapping("/paintings/{id}")

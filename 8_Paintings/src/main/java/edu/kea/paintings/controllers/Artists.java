@@ -28,6 +28,25 @@ public class Artists {
         return artists.save(newArtist);
     }
 
+    @PostMapping("/artists/painting/{paintingid}")
+    public Artist addPaintingToArtist(@PathVariable Long paintingid) {
+        return null;
+    }
+
+    @PostMapping("/artists/gallery/{galleryid}")
+    public Artist addGalleryToArtist(@PathVariable Long galleryid) {
+        System.out.println();
+        return null;
+    }
+
+    @PostMapping("/artists/gallery/{artistId}/{galleryId}")
+    public Artist addGalleryToArtist(@PathVariable Long artistId, @PathVariable Long galleryId) {
+        // todo finish implementing this
+//        Artist foundArtist = artists.findById(artistId).get();
+//        System.out.println(foundArtist);
+        return null;
+    }
+
     @PutMapping("/artists/{id}")
     public String updateArtistById(@PathVariable Long id, @RequestBody Artist artistToUpdateWith) {
         if (artists.existsById(id)) {
