@@ -33,12 +33,10 @@ public class Painting {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "paintings_artists",
             joinColumns = {
-                    @JoinColumn(name = "paintings_id", referencedColumnName = "id",
-                            nullable = true, updatable = true)
+                    @JoinColumn(name = "paintings_id", referencedColumnName = "id")
             },
             inverseJoinColumns = {
-                    @JoinColumn(name = "artists_id", referencedColumnName = "id",
-                            nullable = true, updatable = true)
+                    @JoinColumn(name = "artists_id", referencedColumnName = "id")
             }
     )
     private List<Artist> artists;
