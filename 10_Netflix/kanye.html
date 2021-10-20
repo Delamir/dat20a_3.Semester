@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .reaction-btn {
+            width: 500px;
+            height: 300px;
+            background-color: magenta;
+            font-family: "Comic Sans MS",serif;
+            color: beige;
+            font-size: x-large;
+
+        }
+
+        .reaction-btn:hover {
+            background-color: blueviolet;
+        }
+
+        .btn-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .list-wrapper {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        #list-laugh {
+            background-color: blue;
+        }
+
+        #list-wtf {
+            background-color: #e50914;
+        }
+
+        #list-horny {
+            background-color: chartreuse;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Kanye</title>
+</head>
+<body>
+<h1 style="text-align: center">Great quotes by the man</h1>
+<div class="btn-wrapper">
+    <button id="btn-laugh" class="reaction-btn">Funny</button>
+    <button id="btn-wtf" class="reaction-btn">WTF</button>
+    <button id="btn-horny" class="reaction-btn">Horny</button>
+</div>
+
+<h2 id="kanye-quote" style="text-align: center"></h2>
+
+<div class="list-wrapper">
+    <div id="list-laugh" class="list"></div>
+    <div id="list-wtf" class="list"></div>
+    <div id="list-horny" class="list"></div>
+</div>
+
+<!-- <button id="butan">Get a new quote</button> -->
+
+<script src="./kanye.js"></script>
+
+</body>
+</html>

@@ -3,6 +3,7 @@ package edu.kea.paintings.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Table(name = "paintings")
@@ -41,4 +42,5 @@ public class Painting {
             }
     )
     private List<Artist> artists;
+
 }

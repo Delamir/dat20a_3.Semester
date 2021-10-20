@@ -1,9 +1,17 @@
 package edu.kea.paintings.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.kea.paintings.DTO.ArtistDTO;
+import edu.kea.paintings.models.Artist;
 import edu.kea.paintings.models.Painting;
+import edu.kea.paintings.repositories.ArtistRepository;
 import edu.kea.paintings.repositories.PaintingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class Paintings {
@@ -33,6 +41,7 @@ public class Paintings {
     public List<Painting> getPaintingsAboveACertainPrice(@PathVariable double price) {
         return paintings.findPaintingsAboveACertainPrice(price);
     }
+
 
     @PostMapping("/paintings")
     public Painting addPainting(@RequestBody String body) throws JsonProcessingException {

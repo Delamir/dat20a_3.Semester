@@ -32,4 +32,5 @@ public class Gallery {
     @OneToMany(mappedBy = "gallery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Artist> artists;
 
+
 }
