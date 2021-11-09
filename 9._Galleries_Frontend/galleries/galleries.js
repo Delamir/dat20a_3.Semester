@@ -19,16 +19,21 @@ fetch("http://localhost:8080/galleries")
  */
 
 const galleryBody = document.getElementById("gallery-body");
-const galleryCreate = document.getElementById("create-gallery-button");
+
 
 fetch( baseURL + "/galleries")
     .then(response => response.json())
     .then(galleries => {
         console.log(galleries);
-        galleries.map(gallery => {
-            const galleryT = document.createElement("tr");
+        galleries.map(addGalleryRow);
 
-            galleryT.innerHTML = `
+    });
+
+function addGalleryRow(gallery) {
+
+    const galleryT = document.createElement("tr");
+
+        galleryT.innerHTML = `
                <td> <a href="./gallery.html?id=${gallery.id}">${escapeHTML(gallery.name)}</a></td>
                
                     <td>${escapeHTML(gallery.owner)}</td>
@@ -38,33 +43,19 @@ fetch( baseURL + "/galleries")
                         <button onclick="deleteGallery(${gallery.id})">DELETE</button>
                     </td>
             `;
-
-            galleryBody.appendChild(galleryT);
-
-        });
-
-    });
+        galleryT.id = gallery.id;
+        galleryBody.appendChild(galleryT);
+}
 
 function deleteGallery(galleryId) {
-    console.log(galleryId)
+    fetch(baseURL + "/galleries/" + galleryId, {
+        method: "DELETE"
+    }).then(response => {
+        if (response.status === 200) {
+            document.getElementById(galleryId).remove();
+        } else {
+            console.log(response.status);
+        }
+    })
+
 }
-
-function createGallery() {
-   fetch(baseURL + "/galleries", {
-       method: "POST",
-       headers: {
-           "Content-type": "application/json; charset=UTF-8"
-       },
-       body: JSON.stringify({
-           name: "Gallery",
-           owner: "Christian",
-           location: "Copenhagen",
-           squareFeet: 50
-       })
-   }).then(response => response.json()).then(result => {
-
-   });
-}
-
-document.getElementById("create-gallery-button")
-.addEventListener("click", createGallery);
